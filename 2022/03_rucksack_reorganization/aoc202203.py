@@ -27,7 +27,17 @@ def part1(data):
 
 def part2(data):
     """Solve part 2."""
-
+    sacks = []
+    for sack in data.split("\n"):
+        n = len(sack)//2
+        comp1 = "".join(set(sack[:n]))
+        comp2 = "".join(set(sack[n:]))
+        for char in comp1:
+            if char in comp2 and ord(char) <= ord("Z"):
+                sacks.append(ord(char) - 38)
+            elif char in comp2 and ord(char) > ord("Z"):
+                sacks.append(ord(char) - 96)
+    return sum(sacks)
 
 def solve(puzzle_input):
     """Solve the puzzle for the given input."""
